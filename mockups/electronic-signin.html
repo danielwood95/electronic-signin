@@ -1,0 +1,100 @@
+<head>
+  <title>Orange Key Sign-in</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+<body> 
+<script type="text/javascript">
+function signedIn(pnl,btn1,btn2) {
+  var panel = document.getElementById(pnl);
+  var button1 = document.getElementById(btn1)
+  var button2 = document.getElementById(btn2)
+  panel.style.background = "PaleGreen";
+  button1.style.visibility = "hidden";
+  button2.style.visibility = "hidden";
+}
+
+function gaveTour(pnl,btn1,btn2,btn3) {
+  var panel = document.getElementById(pnl);
+  var button1 = document.getElementById(btn1)
+  var button2 = document.getElementById(btn2)
+  var button3 = document.getElementById(btn3)
+  button2.disabled = "true";
+  signedIn(pnl,btn1,btn3);
+}
+
+
+</script>
+  <nav class="navbar navbar-inverse">
+    <a class="navbar-brand" href="#">Orange Key Electronic Sign-in</a>
+  </nav>
+  <div class="container" style="background:WhiteSmoke">
+    <h2>Wednesday, June 21  1:00 Tour</h2>
+    <br>
+    <div id="panels">
+      <div id="pnl1" class='panel panel-default' style='height: 60px'>
+        <div style='float: left; width: 55%; margin-top: 10px'>
+          <h4 style='margin-left: 20px'>Daniel Wood: 774-893-3134</h4>
+        </div>
+
+        <div style='float: left; width: 15%; margin-top: 10px;'>
+          <button id="btn1" type="button" class="btn btn-primary" onclick="signedIn('pnl1','btn1','btn3')">Sign in</button>
+        </div>
+
+        <div style='float:left; width:15%; margin-top: 10px;'>
+          <button id="btn2" type="button" class="btn btn-primary" onclick="gaveTour('pnl1','btn1','btn2','btn3')">Gave tour</button>
+        </div>
+   
+        <div style='float: left; width: 15%; margin-top: 10px;'>
+          <button id="btn3" type="button" class="btn btn-primary">Substitute</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="panels">
+      <div id="pnl2" class='panel panel-default' style='height: 60px'>
+        <div style='float: left; width: 55%; margin-top: 10px'>
+          <h4 style='margin-left: 20px'>Luc Cote: 978-844-4972</h4>
+        </div>
+
+        <div style='float: left; width: 15%; margin-top: 10px;'>
+          <button id="btn4" type="button" class="btn btn-primary" onclick="signedIn('pnl2','btn4','btn6')">Sign in</button>
+        </div>
+
+        <div style='float:left; width:15%; margin-top: 10px;'>
+          <button id="btn5" type="button" class="btn btn-primary" onclick="gaveTour('pnl2','btn4','btn5','btn6')">Gave tour</button>
+        </div>
+   
+        <div style='float: left; width: 15%; margin-top: 10px;'>
+          <button id="btn6" type="button" class="btn btn-primary">Substitute</button>
+        </div>
+      </div>
+    </div>
+
+      <div id="panels">
+      <div id="pnl3" class='panel panel-default' style='height: 60px'>
+        <div style='float: left; width: 55%; margin-top: 10px'>
+          <h4 style='margin-left: 20px'>Evan Wood: 774-893-3135</h4>
+        </div>
+
+        <div style='float: left; width: 15%; margin-top: 10px;'>
+          <button id="btn7" type="button" class="btn btn-primary" onclick="signedIn('pnl3','btn7','btn9')">Sign in</button>
+        </div>
+
+        <div style='float:left; width:15%; margin-top: 10px;'>
+          <button id="btn8" type="button" class="btn btn-primary" onclick="gaveTour('pnl3','btn7','btn8','btn9')">Gave tour</button>
+        </div>
+   
+        <div style='float: left; width: 15%; margin-top: 10px;'>
+          <button id="btn9" type="button" class="btn btn-primary">Substitute</button>
+        </div>
+      </div>
+    </div>
+  <button id="btn10" type="button" class="btn btn-primary" style="margin-left: 15px; margin-bottom:20px" onclick="additionalGuide()">Additional Guide +</button>
+  </div>
+</body>
+</html>
