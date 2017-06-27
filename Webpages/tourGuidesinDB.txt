@@ -1,7 +1,5 @@
-gil
-gilbert
-gilberto
+daniel wood
+erin cote
+gil cote
 luc
-select * from *
-jill
 erin
