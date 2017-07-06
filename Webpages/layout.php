@@ -144,6 +144,7 @@
 </script>
 <nav class="navbar navbar-inverse">
     <a class="navbar-brand" href="#">Orange Key Electronic Sign-in</a>
+    <a href="admin.php" style="float: right; margin-right: 10px; margin-top: 10px"><img src="gear.jpg" style="width: 30px; height: 30px;"></a>
 </nav>
 <div class="container" style="background:WhiteSmoke">
     <div id="panels">
@@ -248,12 +249,12 @@
     <h1>Substitute Form</h1>
     <form id="subForm" action="substitute.php" method="get" onsubmit="return validate();">
         Original Tour Guide:<br>
-        <input type="text" value="tour guide" name="TourGuide" readonly><br>
+        <input type="text" value="tour guide" name="TourGuide" readonly required><br>
         Substitute Tour Guide(Full Name):<br>
-        <input type="text" placeholder="Name" name="Substitute">
+        <input type="text" placeholder="Name" name="Substitute" required>
         <br><br>
         Substitute's Phone Number:<br>
-        <input type="text" placeholder="Phone Number" name="Number">
+        <input type="text" placeholder="Phone Number" name="Number" required>
         <br><br>
         <input type="submit" value="Submit" class="btn btn-primary">
     </form>
@@ -263,10 +264,10 @@
     <h1>Add Tour Guide Form</h1>
     <form id="addForm" action="additionalTourGuide.php" method="get" onsubmit="validateAdd()">
         Full Name:<br>
-        <input type="text" placeholder="Name" name="TourGuide">
+        <input type="text" placeholder="Name" name="TourGuide" required>
         <br><br>
         Phone Number:<br>
-        <input type="text" placeholder="Phone Number" name="Number">
+        <input type="text" placeholder="Phone Number" name="Number" required>
         <br><br>
         <input type="submit" value="Submit" class="btn btn-primary">
     </form>
