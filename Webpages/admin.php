@@ -34,6 +34,14 @@
 </style>
 </head>
 <body>
+<script>
+    function resetCheck() {
+        if(confirm("Are You Sure You Would Like To Reset The Tour Guide Totals")){
+        }else{
+            return false;
+        }
+    }
+</script>
 <span style="float: left; margin-left: 10px; margin-bottom:10px;"><a href="getPreviousTours.php">See Previous Tours</a></span>
 <span style="float: right; margin-right: 10px; margin-bottom:10px;"><a href="layout.php">Tour Guide Sign In</a></span>
 <h1>Admin Page</h1>
@@ -95,5 +103,8 @@
         </table>
     <br><br>
 </div>
+<form action="ResetPeople.php" onsubmit="return resetCheck()">
+    <input type="submit" value="Reset Totals" style="background-color: red; float: left; margin-left: 10px; border-radius: 5px">
+</form>
 </body>
 </html>
