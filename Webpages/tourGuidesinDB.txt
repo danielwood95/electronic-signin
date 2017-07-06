@@ -1,6 +1,0 @@
-luc
-dog
-7
-name
-5
-yes
