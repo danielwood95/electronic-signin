@@ -15,6 +15,10 @@
             border: 1px solid black;
             border-collapse: collapse;
         }
+        #returnForm{
+            visibility:hidden;
+            display:none;
+        }
     </style>
 </head>
 <body>
@@ -28,9 +32,15 @@
     function toCurrent(){
         window.location.href = 'setCurrentDay.php';
     }
+    function toAdminPage(){
+        document.getElementById("returnForm").submit();
+    }
 </script>
+<form id="returnForm" action="admin.php" method="post">
+    <input type="password" value="<?php echo $_POST["PSSWD"];?>" name="PSSWD" readonly>
+</form>
 <div id="tablediv">
-    <span style="float: left; margin-left: 10px; margin-bottom:10px;"><a href="admin.php">Back to Admin Page</a></span>
+    <span style="float: left; margin-left: 10px; margin-bottom:10px;"><a onclick="toAdminPage()" style="color: purple; cursor: pointer;">Back to Admin Page</a></span>
     <button id="btn10" type="button" style="float: right; margin-right: 10px; margin-bottom:10px;" onclick="toCurrent()">Current Day</button>
     <form action="search.php">
         <input type="search" name="Search" required>
@@ -88,7 +98,7 @@
                         $gt = "Yes";
                     }
                     if(time()-strtotime($dateArray[$x]) < 0){
-                        echo "<tr stlye='background-color: green;'>
+                        echo "<tr style=\"background-color: lightgreen\">
                 <td>".$row["Name"]."</td>
                 <td>".$row["Number"]."</td>
                 <td>".$row["Date"]."</td>
@@ -122,7 +132,7 @@
                         $gt = "Yes";
                     }
                     if(time()-strtotime($dateArray[$x]) < 0){
-                        echo "<tr stlye='background-color: green;'>
+                        echo "<tr style=\"background-color: lightgreen\">
                 <td>".$row["Name"]."</td>
                 <td>".$row["Number"]."</td>
                 <td>".$row["Date"]."</td>
@@ -156,7 +166,7 @@
                         $gt = "Yes";
                     }
                     if(time()-strtotime($dateArray[$x]) < 0){
-                        echo "<tr stlye='background-color: green;'>
+                        echo "<tr style=\"background-color: lightgreen\">
                 <td>".$row["Name"]."</td>
                 <td>".$row["Number"]."</td>
                 <td>".$row["Date"]."</td>

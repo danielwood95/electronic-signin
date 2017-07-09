@@ -12,7 +12,7 @@ if ($conn->connect_error) {
 }
 
 // Create database
-$sql = "CREATE DATABASE myDB";
+$sql = "CREATE DATABASE TourGuides";
 if ($conn->query($sql) === TRUE) {
     echo "Database created successfully";
 } else {

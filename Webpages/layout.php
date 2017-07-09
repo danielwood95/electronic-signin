@@ -144,7 +144,7 @@
 </script>
 <nav class="navbar navbar-inverse">
     <a class="navbar-brand" href="#">Orange Key Electronic Sign-in</a>
-    <a href="admin.php" style="float: right; margin-right: 10px; margin-top: 10px"><img src="gear.jpg" style="width: 30px; height: 30px;"></a>
+    <a href="EnterAdmin.php" style="float: right; margin-right: 10px; margin-top: 10px"><img src="gear.jpg" style="width: 30px; height: 30px;"></a>
 </nav>
 <div class="container" style="background:WhiteSmoke">
     <div id="panels">
@@ -262,7 +262,7 @@
 </div>
 <div id="addTourDiv">
     <h1>Add Tour Guide Form</h1>
-    <form id="addForm" action="additionalTourGuide.php" method="get" onsubmit="validateAdd()">
+    <form id="addForm" action="additionalTourGuide.php" method="get" onsubmit="return validateAdd()">
         Full Name:<br>
         <input type="text" placeholder="Name" name="TourGuide" required>
         <br><br>

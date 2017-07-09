@@ -1,7 +1,9 @@
 <?php
 require_once("DBConnect.php");
+$semesterEnd = fopen("SemesterEnd", "w");
+fwrite($semesterEnd, $_GET["SemesterDate"]);
 $totalsWipe = fopen("Session1Totals", "w");
-fwrite($totalsWipe, "Name\tTours\tLate\tAbsences");
+fwrite($totalsWipe, "Name\t\tTours\tLate\tAbsences");
 fclose($totalsWipe);
 $totals = fopen("Session1Totals", "a");
 $sql = "SELECT * FROM People";
@@ -14,11 +16,11 @@ if ($result->num_rows > 0) {
     }
 }
 fclose($totals);
-$reset = fopen("tourGuidesinDB", "w");
+$reset = fopen("tourGuidesinDB.txt", "w");
 fclose($reset);
 $sql2 = "DELETE FROM People";
 if ($conn->query($sql2) === TRUE) {
-    echo "Record deleted successfully<br><a href='admin.php'>Click Here To Return To Admin Page</a> ";
+    echo "Semester Started Successfully <br><a href='admin.php'>Click Here To Return To Admin Page</a> ";
 } else {
     echo "Error deleting record: " . $conn->error;
 }
