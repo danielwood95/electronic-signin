@@ -22,13 +22,16 @@
             border: solid lightgray;
         }
         input{
-            height: 25px;
+            height: 60px;
+            border: solid gray;
+            border-radius: 10px;
         }
         input[type=submit]{
             border: solid green;
         }
         button{
             border: solid red;
+            border-radius: 10px;
         }
     </style>
 </head>
@@ -54,11 +57,13 @@
     }
 </script>
 <a href="layout.php" style="float: left; margin-left: 10px; margin-bottom:10px;">Back To Check In</a>
+<br>
 <div>
-    <h1>Please Enter The Password To Enter The Admin Site</h1>
+    <h1 style="margin-top: 50px;">Please Enter The Password To Enter The Admin Site</h1>
+    <br>
     <form action="admin.php" method="post">
-        <input type="password" name="PSSWD" required>
-        <input type="submit" >
+        <input type="password" name="PSSWD" placeholder="password" style="width:50%; font-size: larger" required>
+        <input type="submit" value="Enter" style="width: 10%">
     </form>
 </div>
 <br>
