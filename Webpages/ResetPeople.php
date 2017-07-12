@@ -1,7 +1,14 @@
 <?php
+$pwfile = fopen("Password", "r");
+$pw = fgets($pwfile);
+fclose($pwfile);
+if(!password_verify($_POST["PSSWD"], $pw)){
+    echo "password incorrect please re-enter password <a href='EnterAdmin.php'>here</a>";
+    die;
+}
 require_once("DBConnect.php");
 $semesterEnd = fopen("SemesterEnd", "w");
-fwrite($semesterEnd, $_GET["SemesterDate"]);
+fwrite($semesterEnd, $_POST["SemesterDate"]);
 $totalsWipe = fopen("Session1Totals", "w");
 fwrite($totalsWipe, "Name\t\tTours\tLate\tAbsences");
 fclose($totalsWipe);
@@ -20,9 +27,20 @@ $reset = fopen("tourGuidesinDB.txt", "w");
 fclose($reset);
 $sql2 = "DELETE FROM People";
 if ($conn->query($sql2) === TRUE) {
-    echo "Semester Started Successfully <br><a href='admin.php'>Click Here To Return To Admin Page</a> ";
+    echo "Semester Started Successfully <br><a onclick='goBack()' style='color: purple; cursor: pointer;'>Click Here To Return To Admin Page</a> ";
 } else {
     echo "Error deleting record: " . $conn->error;
 }
-
 ?>
+<html>
+<body>
+<script>
+    function goBack(){
+        document.forms['goBack'].submit();
+    }
+</script>
+<form id="goBack" action="admin.php" method="post" style="visibility: hidden; display: none;">
+    <input type="text" name="PSSWD" value="<?php echo$_POST["PSSWD"]?>" readonly>
+</form>
+</body>
+</html>

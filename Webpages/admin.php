@@ -73,7 +73,7 @@ if(!password_verify($_POST["PSSWD"], $pw)){
         }
     }
     function openReset() {
-        if(confirm("Are You Sure You Would Like To Reset The Tour Guide Totals")){
+        if(confirm("Are You Sure You Would Like To Start A New Semester And Reset The Tour Guide Totals")){
             document.getElementById("resetDiv").style.display = "block";
             document.getElementById("resetDiv").style.visibility = "visible";
         }
@@ -92,13 +92,15 @@ if(!password_verify($_POST["PSSWD"], $pw)){
     <h2>Totals:</h2>
     <table>
             <col width="25%">
-            <col width="15%">
-            <col width="15%">
-            <col width="15%">
-            <col width="15%">
-            <col width="15%">
+            <col width="12.5%">
+            <col width="12.5%">
+            <col width="12.5%">
+            <col width="12.5%">
+            <col width="12.5%">
+            <col width="12.5%">
             <tr>
                 <th>Name</th>
+                <th>Number</th>
                 <th>Tours Given</th>
                 <th>Minutes Late</th>
                 <th>Absences</th>
@@ -112,14 +114,17 @@ if(!password_verify($_POST["PSSWD"], $pw)){
             if ($result->num_rows > 0) {
                 // output data of each row
                 while ($row = $result->fetch_assoc()) {
-                    $win = "11:15";
+                    $win = $row["Window"];
                     if($row["Window"] == "one"){
                         $win="1:00";
                     }else if($row["Window"] == "three"){
                         $win = "3:30";
+                    }else if($row["Window"] == "eleven"){
+                        $win = "11:00";
                     }
                     echo "<tr>
                 <td>".$row["Name"]."</td>
+                <td>".$row["Number"]."</td>
                 <td>".$row["Tours"]."</td>
                 <td>".$row["Late"]."</td>
                 <td>".$row["Absences"]."</td>
@@ -142,7 +147,7 @@ if(!password_verify($_POST["PSSWD"], $pw)){
                 <th>Tour Time</th>
                 <th>Enter</th>
             </tr>
-            <form id="add" action="AdminAddTourGuide.php">
+            <form id="add" action="AdminAddTourGuide.php" method="post">
                 <tr>
                     <td><input type="text" name="Name" placeholder="Name" required></td>
                     <td><input type="text" name="Number" placeholder="Number" required></td>
@@ -160,6 +165,7 @@ if(!password_verify($_POST["PSSWD"], $pw)){
                             <option value="one">1:00</option>
                             <option value="three">3:30</option>
                         </select></td>
+                    <input name="PSSWD" value="<?php echo $_POST["PSSWD"]; ?>" style="visibility: hidden; display: none;" type="text">
                     <td><input type="submit"></td>
                 </tr>
             </form>
@@ -168,7 +174,8 @@ if(!password_verify($_POST["PSSWD"], $pw)){
 </div>
 <div id="resetDiv">
     <h1>New Semester</h1>
-    <form action="ResetPeople.php" method="get">
+    <form action="ResetPeople.php" method="post">
+        <input name="PSSWD" value="<?php echo $_POST["PSSWD"]; ?>" style="visibility: hidden; display: none;" type="text">
         Date the New Semester ends:<br>
         <input type="date" name="SemesterDate" required><br><br>
         <input type="submit" value="Make New Semester" style="background-color: green; border-radius: 5px;">
@@ -176,8 +183,9 @@ if(!password_verify($_POST["PSSWD"], $pw)){
     <button style="background-color: red; border-radius: 5px;" onclick="closeReset()">Cancel</button>
 </div>
 <button style="background-color: orange; float: left; margin-left: 10px; border-radius: 5px" onclick="openReset()">New Semester</button>
-<form action="ResetAll.php" onsubmit="return deleteCheck()">
-    <input type="submit" value="Reset All" style="background-color: red; float: left; margin-left: 10px; border-radius: 5px">
+<form action="ResetAll.php" onsubmit="return deleteCheck()" method="post">
+    <input name="PSSWD" value="<?php echo $_POST["PSSWD"]; ?>" style="visibility: hidden; display: none;" type="text">
+    <input type="submit" value="Reset All" style="background-color: orangered; float: left; margin-left: 10px; border-radius: 5px">
 </form>
 <form id="toPrev" action="getPreviousTours.php" method="post">
     <input type="password" value="<?php echo $_POST["PSSWD"];?>" name="PSSWD" readonly>

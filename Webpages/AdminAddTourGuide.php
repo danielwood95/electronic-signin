@@ -1,19 +1,19 @@
 <?php
 require_once("DBConnect.php");
-$tg = $_GET["Name"];
-$num = $_GET["Number"];
-$day = $_GET["Day"];
-$win = $_GET["Window"];
+$tg = $_POST["Name"];
+$num = $_POST["Number"];
+$day = $_POST["Day"];
+$win = $_POST["Window"];
 $inDBfile = fopen("tourGuidesinDB.txt", "r+");
 $Match = false;
 while(!feof($inDBfile)){
-    if(strtolower(fgets($inDBfile)) == (strtolower($_GET['Name'])."\n")){
+    if(strtolower(fgets($inDBfile)) == (strtolower($_POST['Name'])."\n")){
         $Match = true;
     }
 }
 if(!$Match) {
-    $sql = "INSERT INTO People (Name, Day, Window)
-    VALUES ('" . strtolower($tg) . "', '".$day."', '".$win."')";
+    $sql = "INSERT INTO People (Name, Day, Window, Number)
+    VALUES ('" . strtolower($tg) . "', '".$day."', '".$win."', '".$num."')";
     if ($conn->query($sql) === TRUE) {
         fwrite($inDBfile, strtolower($tg)."\n");
     } else {
@@ -47,6 +47,13 @@ for($x = 0; $x < count($dateArray); $x++) {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
 }
-header('Location: ' . $_SERVER["HTTP_REFERER"] );
-exit;
 ?>
+<html>
+<form name='redirect' action='admin.php' method='POST'>
+    <input type='hidden' name='PSSWD' value='<?php echo $_POST["PSSWD"]; ?>'>
+</form>
+<script type='text/javascript'>
+    document.redirect.submit();
+</script>
+</html>
+

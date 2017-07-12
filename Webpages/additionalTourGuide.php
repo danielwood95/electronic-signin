@@ -12,6 +12,23 @@ if ($conn->query($sql) === TRUE) {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }
 fclose($timeFile);
+$inDBfile = fopen("tourGuidesinDB.txt", "r+");
+$Match = false;
+while(!feof($inDBfile)){
+    if(strtolower(fgets($inDBfile)) == (strtolower($_GET['Name'])."\n")){
+        $Match = true;
+    }
+}
+if(!$Match) {
+    $sql = "INSERT INTO People (Name, Number)
+    VALUES ('" . strtolower($tg) . "', '".$num."')";
+    if ($conn->query($sql) === TRUE) {
+        fwrite($inDBfile, strtolower($tg)."\n");
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+}
+fclose($inDBfile);
 header('Location: ' . $_SERVER["HTTP_REFERER"] );
 exit;
 ?>

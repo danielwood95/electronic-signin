@@ -14,13 +14,25 @@
             border: 1px solid black;
             border-collapse: collapse;
         }
+        #returnForm{
+            visibility:hidden;
+            display:none;
+        }
     </style>
 </head>
 <body>
+<script>
+    function toAdminPage(){
+        document.getElementById("returnForm").submit();
+    }
+</script>
+<form id="returnForm" action="admin.php" method="post">
+    <input type="password" value="<?php echo $_POST["PSSWD"];?>" name="PSSWD" readonly>
+</form>
 <div id="tablediv">
-    <span style="float: left; margin-left: 10px; margin-bottom:10px;"><a href="admin.php">Back to Admin Page</a></span>
+    <span style="float: left; margin-left: 10px; margin-bottom:10px;"><a onclick="toAdminPage()" style="color: purple; cursor: pointer;">Back to Admin Page</a></span><br><br>
     <form action="search.php">
-        <input type="search" value="<?php echo $_GET["Search"]?>" name="Search" required>
+        <input type="search" value="<?php echo $_POST["Search"]?>" name="Search" required>
         <input type="submit" value="search">
     </form>
     <table>
@@ -40,9 +52,9 @@
         </tr>
         <?php
         require_once("DBConnect.php");
-        $search = $_GET["Search"];
-        $searchlower = strtolower($_GET["Search"]);
-        $searchUF = ucfirst($_GET["Search"]);
+        $search = $_POST["Search"];
+        $searchlower = strtolower($_POST["Search"]);
+        $searchUF = ucfirst($_POST["Search"]);
         $searchDate = date("Y-m-d", strtotime($search));
         $sql = "SELECT * FROM SignedIn WHERE Name='".$search."' OR Number='".$search."' OR Date='".$search."' OR Name='".$searchlower."' OR Name='".$searchUF."' OR Date='".$searchDate."'";
         $result = $conn->query($sql);

@@ -9,7 +9,7 @@
     }
     if(!$Match) {
         $sql = "INSERT INTO People (Name)
-    VALUES ('" . strtolower($_GET['Name'] . "')");
+    VALUES ('" . strtolower($_GET['Name']) . "')";
         if ($conn->query($sql) === TRUE) {
             fwrite($inDBfile, strtolower($_GET['Name'])."\n");
         } else {

@@ -15,7 +15,7 @@
             border: 1px solid black;
             border-collapse: collapse;
         }
-        #returnForm{
+        .hidden{
             visibility:hidden;
             display:none;
         }
@@ -23,26 +23,24 @@
 </head>
 <body>
 <script>
-    function prev() {
-        window.location.href = 'prev30tours.php';
-    }
-    function next() {
-        window.location.href = 'next30tours.php';
-    }
-    function toCurrent(){
-        window.location.href = 'setCurrentDay.php';
-    }
     function toAdminPage(){
         document.getElementById("returnForm").submit();
     }
 </script>
-<form id="returnForm" action="admin.php" method="post">
+<form id="returnForm" class="hidden" action="admin.php" method="post">
     <input type="password" value="<?php echo $_POST["PSSWD"];?>" name="PSSWD" readonly>
 </form>
 <div id="tablediv">
-    <span style="float: left; margin-left: 10px; margin-bottom:10px;"><a onclick="toAdminPage()" style="color: purple; cursor: pointer;">Back to Admin Page</a></span>
-    <button id="btn10" type="button" style="float: right; margin-right: 10px; margin-bottom:10px;" onclick="toCurrent()">Current Day</button>
-    <form action="search.php">
+    <div>
+    <span style="float: left; margin-left: 10px; margin-bottom:10px;"><a onclick="toAdminPage()" style="color: purple; cursor: pointer; text-decoration: underline">Back to Admin Page</a></span><br><br>
+<!--    <button id="btn10" type="button" style="float: right; margin-right: 10px; margin-bottom:10px;" onclick="toCurrent()">Current Day</button>-->
+    <form style="float: right; margin-right: 10px; margin-bottom:10px;" action="setCurrentDay.php" method="post">
+        <input class="hidden" type="password" value="<?php echo $_POST["PSSWD"];?>" name="PSSWD" readonly>
+        <input type="submit" value="Current Day">
+    </form>
+    </div>
+    <form action="search.php" method="post">
+        <input class="hidden" type="password" value="<?php echo $_POST["PSSWD"];?>" name="PSSWD" readonly>
         <input type="search" name="Search" required>
         <input type="submit" value="search">
     </form>
@@ -190,11 +188,18 @@
         ?>
     </table>
     <div style='float: left; width: 10%; margin-top: 10px; margin-bottom: 20px'>
-        <button type="button" onclick="prev();" style="width: 100%;">Prev</button>
+        <form style="width: 100%;" action="prev30tours.php" method="post">
+            <input class="hidden" type="password" value="<?php echo $_POST["PSSWD"];?>" name="PSSWD" readonly>
+            <input type="submit" value="Prev" style="width: 100%;">
+        </form>
     </div>
     <div style='float: right; width: 10%; margin-top: 10px; margin-bottom: 20px'>
-        <button type="button" onclick="next();" style="width: 100%;">Next</button>
+        <form style="width: 100%;" action="next30tours.php" method="post">
+            <input class="hidden" type="password" value="<?php echo $_POST["PSSWD"];?>" name="PSSWD" readonly>
+            <input type="submit" value="Next" style="width: 100%;">
+        </form>
     </div>
+    <br><br><br>
 </div>
 </body>
 </html>
