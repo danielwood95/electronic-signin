@@ -15,7 +15,7 @@ fclose($timeFile);
 $inDBfile = fopen("tourGuidesinDB.txt", "r+");
 $Match = false;
 while(!feof($inDBfile)){
-    if(strtolower(fgets($inDBfile)) == (strtolower($_GET['Name'])."\n")){
+    if(strtolower(fgets($inDBfile)) == (strtolower($tg)."\n")){
         $Match = true;
     }
 }
