@@ -25,10 +25,10 @@ $sql = "CREATE TABLE People (
 Name VARCHAR(255) NOT NULL, 
 Tours INT(11) DEFAULT 0,
 Late INT(11) DEFAULT 0,
-Absences INT(11) DEFAULT 0),
-Day enum('monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday', 'none') DEFAULT 'none',
+Absences INT(11) DEFAULT 0,
+Day ENUM('monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday', 'none') DEFAULT 'none',
 Window enum('eleven', 'one', 'three', 'none') DEFAULT 'none',
-Number VARCHAR(255) DEFAULT 'none';
+Number VARCHAR(255) DEFAULT 'none');
 ";
 
 if (mysqli_query($conn, $sql)) {

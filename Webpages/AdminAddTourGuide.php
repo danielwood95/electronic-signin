@@ -18,6 +18,7 @@ if(!$Match) {
         fwrite($inDBfile, strtolower($tg)."\n");
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
+        die;
     }
 }
 function date_range($first, $last, $step = '+7 day', $output_format = 'Y-m-d' ) {
@@ -45,6 +46,7 @@ for($x = 0; $x < count($dateArray); $x++) {
         //echo "New record created successfully".$eleveninm;
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
+        die;
     }
 }
 ?>

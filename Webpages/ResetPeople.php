@@ -30,6 +30,7 @@ if ($conn->query($sql2) === TRUE) {
     echo "Semester Started Successfully <br><a onclick='goBack()' style='color: purple; cursor: pointer;'>Click Here To Return To Admin Page</a> ";
 } else {
     echo "Error deleting record: " . $conn->error;
+    die;
 }
 ?>
 <html>
