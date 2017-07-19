@@ -15,6 +15,9 @@
             border: 1px solid black;
             border-collapse: collapse;
         }
+        tr{
+            background-color: lightgray;
+        }
         .hidden{
             visibility:hidden;
             display:none;
@@ -51,7 +54,7 @@
         <col width="15%">
         <col width="10%">
         <col width="10%">
-        <tr>
+        <tr style="background-color: white">
             <th>Name</th>
             <th>Number</th>
             <th>Date</th>
@@ -96,7 +99,7 @@
                         $gt = "Yes";
                     }
                     if(time()-strtotime($dateArray[$x]) < 0){
-                        echo "<tr style=\"background-color: lightgreen\">
+                        echo "<tr style=\"background-color: white\">
                 <td>".$row["Name"]."</td>
                 <td>".$row["Number"]."</td>
                 <td>".$row["Date"]."</td>
@@ -130,7 +133,7 @@
                         $gt = "Yes";
                     }
                     if(time()-strtotime($dateArray[$x]) < 0){
-                        echo "<tr style=\"background-color: lightgreen\">
+                        echo "<tr style=\"background-color: white\">
                 <td>".$row["Name"]."</td>
                 <td>".$row["Number"]."</td>
                 <td>".$row["Date"]."</td>
@@ -164,7 +167,7 @@
                         $gt = "Yes";
                     }
                     if(time()-strtotime($dateArray[$x]) < 0){
-                        echo "<tr style=\"background-color: lightgreen\">
+                        echo "<tr style=\"background-color: white\">
                 <td>".$row["Name"]."</td>
                 <td>".$row["Number"]."</td>
                 <td>".$row["Date"]."</td>

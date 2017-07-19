@@ -5,7 +5,7 @@ $timeFile = fopen("currentTourWindow", "r");
 $cw = fgets($timeFile);
 $tg = $_GET["TourGuide"];
 $num = $_GET["Number"];
-$sql = "INSERT INTO SignedIn (Name, Number, Date, Window) VALUES ('".$tg."', '".$num."', '".date("Y-m-d")."', '".$cw."')";
+$sql = "INSERT INTO SignedIn (Name, Number, Date, Window) VALUES ('".strtolower($tg)."', '".$num."', '".date("Y-m-d")."', '".$cw."')";
 if ($conn->query($sql) === TRUE) {
     //echo "New record created successfully".$eleveninm;
 } else {

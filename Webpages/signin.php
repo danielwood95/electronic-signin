@@ -66,7 +66,7 @@
     }
     //echo date("Y-m-d");
     fclose($TourWindowFileR);
-    $sisql = "UPDATE SignedIn SET Here='true' WHERE Name='".strtolower($_GET['Name'])."'";
+    $sisql = "UPDATE SignedIn SET Here='true' WHERE Name='".strtolower($_GET['Name'])."' AND Date='".date("Y-m-d")."'";
     if ($conn->query($sisql) === TRUE) {
         //echo "New record created successfully".$eleveninm;
     } else {

@@ -120,7 +120,7 @@ if(!password_verify($_POST["PSSWD"], $pw)){
                     }else if($row["Window"] == "three"){
                         $win = "3:30";
                     }else if($row["Window"] == "eleven"){
-                        $win = "11:00";
+                        $win = "11:15";
                     }
                     echo "<tr>
                 <td>".$row["Name"]."</td>

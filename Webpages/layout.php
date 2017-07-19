@@ -11,7 +11,7 @@
         if ($result->num_rows > 0) {
             // output data of each row
             while($row = $result->fetch_assoc()) {
-                $sql2 = "UPDATE People SET Absences=Absences+1 WHERE Name='".$row["Name"]."'";
+                $sql2 = "UPDATE People SET Absences=Absences+1 WHERE Name='".strtolower($row["Name"])."'";
                 if ($conn->query($sql2) === TRUE) {
                     $dateFileWrite = fopen("CurrentDate", "w");
                     fwrite($dateFileWrite, date("Y-m-d"));
@@ -34,6 +34,17 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <style>
+        .page-bg {
+            background: url('princeton.png') no-repeat;
+            background-size: 100% 100%;
+            filter: blur(4px);
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
         #subDiv{
             width:50%;
             height:330px;
@@ -70,6 +81,13 @@
         }
         #btn10{
             float: right;
+            background-color: transparent;
+        }
+        .btn-primary:hover{
+            color: black;
+        }
+        .btn-primary:disabled:hover{
+            color: white;
         }
         .backImg{
             width:20px;
@@ -143,10 +161,10 @@
 
 </script>
 <nav class="navbar navbar-inverse">
-    <a class="navbar-brand" href="#">Orange Key Electronic Sign-in</a>
+    <a class="navbar-brand" href="#"><span><img src="Princeton_shield.png" style="width: 25px; height: 30px; margin-top: -5px"> Orange Key Electronic Sign-in</span></a>
     <a href="EnterAdmin.php" style="float: right; margin-right: 10px; margin-top: 10px"><img src="gear.jpg" style="width: 30px; height: 30px;"></a>
 </nav>
-<div class="container" style="background:WhiteSmoke">
+<div class="container" style="background: rgba(211, 211, 211, 0.5);">
     <div id="panels">
         <div style="margin-left: 10px">
             <?php
@@ -160,7 +178,7 @@
             }else if($ct == "three"){
                 $timeToDisplay = "3:30 Tour";
             }
-            echo "<h2>".date("l, F d")." ".$timeToDisplay." <button id=\"btn10\" type=\"button\" class=\"btn btn-primary\" style=\"margin-left: 10px; margin-bottom:10px;\" onclick=\"openAdd()\">Additional Guide +</button></h2>";
+            echo "<h2>".date("l, F d")." ".$timeToDisplay." <button id=\"btn10\" type=\"button\" class=\"btn btn-primary\" style=\"margin-left: 10px; margin-bottom:10px; border-color: ff8f00;\" onclick=\"openAdd()\">Additional Guide +</button></h2>";
             ?>
         </div>
     <br>
@@ -181,15 +199,15 @@
                 <h4 style='margin-left: 20px'>".$row["Name"]."  ".$row["Number"]."</h4>
             </div>
             <div style='float: left; width: 15%; margin-top: 10px;'>
-                <button id=\"btn1\" type=\"button\" class=\"btn btn-primary\" onclick=\"signIn('".$row["Name"]."');\">Sign in</button>
+                <button id=\"btn1\" type=\"button\" class=\"btn btn-primary\" onclick=\"signIn('".$row["Name"]."');\" style='background-color: ff8f00;'>Sign in</button>
             </div>
 
             <div style='float:left; width:15%; margin-top: 10px;'>
-                <button id=\"btn2\" type=\"button\" class=\"btn btn-primary\" disabled='true'>Give tour</button>
+                <button id=\"btn2\" type=\"button\" class=\"btn btn-primary\" disabled='true' style='background-color: ff8f00;'>Give tour</button>
             </div>
 
             <div style='float: left; width: 15%; margin-top: 10px;'>
-                <button id=\"btn3\" type=\"button\" class=\"btn btn-primary\" onclick=\"substitute('".$row["Name"]."');\">Substitute</button>
+                <button id=\"btn3\" type=\"button\" style='background-color: ff8f00;' class=\"btn btn-primary\" onclick=\"substitute('".$row["Name"]."');\">Substitute</button>
             </div>
         </div>";
             }else{
@@ -200,11 +218,11 @@
             </div>
 
             <div style='float: left; width: 15%; margin-top: 10px;'>
-                <button id=\"btn1\" type=\"button\" class=\"btn btn-primary\" disabled='true'>Signed in</button>
+                <button id=\"btn1\" type=\"button\" class=\"btn btn-primary\" style='background-color: ff8f00;' disabled='true'>Signed in</button>
             </div>
 
             <div style='float:left; width:15%; margin-top: 10px;'>
-                <button id=\"btn2\" type=\"button\" class=\"btn btn-primary\" onclick='giveTour(\"" . $row["Name"] . "\");'>Give tour</button>
+                <button id=\"btn2\" type=\"button\" class=\"btn btn-primary\" style='background-color: ff8f00;' onclick='giveTour(\"" . $row["Name"] . "\");'>Give tour</button>
             </div>
 
             <div style='float: left; width: 15%; margin-top: 10px;'>
@@ -218,11 +236,11 @@
             </div>
 
             <div style='float: left; width: 15%; margin-top: 10px;'>
-                <button id=\"btn1\" type=\"button\" class=\"btn btn-primary\" disabled='true'>Signed in</button>
+                <button id=\"btn1\" type=\"button\" class=\"btn btn-primary\" disabled='true' style='background-color: ff8f00;'>Signed in</button>
             </div>
 
             <div style='float:left; width:15%; margin-top: 10px;'>
-                <button id=\"btn2\" type=\"button\" class=\"btn btn-primary\" disabled='true', style='background: transparent; color: blue;'>Gave tour</button>
+                <button id=\"btn2\" type=\"button\" class=\"btn btn-primary\" disabled='true', style='background-color: transparent; color: ff8f00; border-color: gray;' >Gave tour</button>
             </div>
 
             <div style='float: left; width: 15%; margin-top: 10px;'>
@@ -239,10 +257,10 @@
     ?>
     </div>
     <div style='float: left; width: 10%; margin-top: 10px; margin-bottom: 20px'>
-        <button type="button" class="btn btn-primary" onclick="prev();" style="width: 100%;">Prev Tour</button>
+        <button type="button" class="btn btn-primary" onclick="prev();" style="width: 100%; background-color: transparent; border-color: ff8f00;">Prev Tour</button>
     </div>
     <div style='float: right; width: 10%; margin-top: 10px; margin-bottom: 20px'>
-        <button type="button" class="btn btn-primary" onclick="next();" style="width: 100%;">Next Tour</button>
+        <button type="button" class="btn btn-primary" onclick="next();" style="width: 100%; background-color: transparent; border-color: ff8f00;">Next Tour</button>
     </div>
 </div>
 <div id="subDiv">
@@ -290,5 +308,7 @@ if ($result->num_rows > 0) {
 }
 ?>
 </span>
+<div class="page-bg">
+</div>
 </body>
 </html>

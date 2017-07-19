@@ -1,5 +1,6 @@
 <?php
 require_once("DBConnect.php");
+date_default_timezone_set("America/New_York");
 $tg = $_POST["Name"];
 $num = $_POST["Number"];
 $day = $_POST["Day"];
@@ -14,6 +15,36 @@ while(!feof($inDBfile)){
 if(!$Match) {
     $sql = "INSERT INTO People (Name, Day, Window, Number)
     VALUES ('" . strtolower($tg) . "', '".$day."', '".$win."', '".$num."')";
+    if ($conn->query($sql) === TRUE) {
+        fwrite($inDBfile, strtolower($tg)."\n");
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+        die;
+    }
+}else{
+    $sql = "SELECT Day FROM People WHERE Name='".strtolower($tg)."'";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        // output data of each row
+        while($row = $result->fetch_assoc()) {
+            $enddateFile = fopen("SemesterEnd", "r");
+            $enddate = fgets($enddateFile);
+            fclose($enddateFile);
+            $daytoReplace = $row["Day"];
+            $startdate = date('Y-m-d', (strtotime("next ".$daytoReplace)));
+            $dateArray = date_range($startdate, $enddate);
+            for($x = 0; $x < count($dateArray); $x++) {
+                $sql = "DELETE FROM SignedIn WHERE Name='".strtolower($tg)."' AND Date='".$dateArray[$x]."'";
+                if ($conn->query($sql) === TRUE) {
+                    //echo "New record created successfully".$eleveninm;
+                } else {
+                    echo "Error: " . $sql . "<br>" . $conn->error;
+                    die;
+                }
+            }
+        }
+    }
+    $sql = "UPDATE People SET Window='".$win."', Day='".$day."', Number='".$num."' WHERE Name='".strtolower($tg)."'";
     if ($conn->query($sql) === TRUE) {
         fwrite($inDBfile, strtolower($tg)."\n");
     } else {
@@ -38,11 +69,11 @@ function date_range($first, $last, $step = '+7 day', $output_format = 'Y-m-d' ) 
 $enddateFile = fopen("SemesterEnd", "r");
 $enddate = fgets($enddateFile);
 fclose($enddateFile);
-$startdate = date('Y-m-d', (strtotime("next ".$day)-604800));
+$startdate = date('Y-m-d', (strtotime("next ".$day)));
 //$startdate = date('Y-m-d', strtotime($day));
 $dateArray = date_range($startdate, $enddate);
 for($x = 0; $x < count($dateArray); $x++) {
-    $sql = "INSERT INTO SignedIn (Name, Number, Date, Window) VALUES ('".$tg."', '".$num."', '".$dateArray[$x]."', '".$win."')";
+    $sql = "INSERT INTO SignedIn (Name, Number, Date, Window) VALUES ('".strtolower($tg)."', '".$num."', '".$dateArray[$x]."', '".$win."')";
     if ($conn->query($sql) === TRUE) {
         //echo "New record created successfully".$eleveninm;
     } else {
