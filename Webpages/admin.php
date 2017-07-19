@@ -10,6 +10,7 @@ if(!password_verify($_POST["PSSWD"], $pw)){
 ?>
 <html>
 <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 <style>
     body{
         text-align: center;
@@ -66,6 +67,19 @@ if(!password_verify($_POST["PSSWD"], $pw)){
 </head>
 <body>
 <script>
+    $(function() {
+        $("#Number").attr('maxlength', '12');
+        $("#Number").on('keyup', function() {
+            var inp = $("#Number").val();
+            var n = inp.indexOf("-");
+            if ((inp.length == 3) || (inp.length == 7)) {
+                $('#Number').val(inp + '-');
+            }
+            else {
+
+            }
+        });
+    });
     function deleteCheck() {
         if(confirm("You Are Deleting All Tour Information From This Current Year Are You Sure You Would Like To Continue?")){
         }else{
@@ -150,7 +164,7 @@ if(!password_verify($_POST["PSSWD"], $pw)){
             <form id="add" action="AdminAddTourGuide.php" method="post">
                 <tr>
                     <td><input type="text" name="Name" placeholder="Name" required></td>
-                    <td><input type="text" name="Number" placeholder="Number" required></td>
+                    <td><input id="Number" type="text" name="Number" placeholder="Number" required></td>
                     <td><select name="Day" required>
                             <option value="monday">Monday</option>
                             <option value="tuesday">Tuesday</option>

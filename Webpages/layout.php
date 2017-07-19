@@ -159,6 +159,33 @@
         window.location.href = 'undo.php?TourGuide=' + nom+"&Did="+did;
     }
 
+    $(function() {
+        $("#Number").attr('maxlength', '12');
+        $("#Number").on('keyup', function() {
+            var inp = $("#Number").val();
+            var n = inp.indexOf("-");
+            if ((inp.length == 3) || (inp.length == 7)) {
+                $('#Number').val(inp + '-');
+            }
+            else {
+
+            }
+        });
+    });
+    $(function() {
+        $("#NumberAdd").attr('maxlength', '12');
+        $("#NumberAdd").on('keyup', function() {
+            var inp = $("#NumberAdd").val();
+            var n = inp.indexOf("-");
+            if ((inp.length == 3) || (inp.length == 7)) {
+                $('#NumberAdd').val(inp + '-');
+            }
+            else {
+
+            }
+        });
+    });
+
 </script>
 <nav class="navbar navbar-inverse">
     <a class="navbar-brand" href="#"><span><img src="Princeton_shield.png" style="width: 25px; height: 30px; margin-top: -5px"> Orange Key Electronic Sign-in</span></a>
@@ -272,7 +299,7 @@
         <input type="text" placeholder="Name" name="Substitute" required>
         <br><br>
         Substitute's Phone Number:<br>
-        <input type="text" placeholder="Phone Number" name="Number" required>
+        <input id="Number" type="text" placeholder="Phone Number" name="Number" required>
         <br><br>
         <input type="submit" value="Submit" class="btn btn-primary" style="background-color: transparent; border-color: white;">
     </form>
@@ -285,7 +312,7 @@
         <input type="text" placeholder="Name" name="TourGuide" required>
         <br><br>
         Phone Number:<br>
-        <input type="text" placeholder="Phone Number" name="Number" required>
+        <input id="NumberAdd" type="text" placeholder="Phone Number" name="Number" required>
         <br><br>
         <input type="submit" value="Submit" class="btn btn-primary" style="background-color: transparent; border-color: white;">
     </form>
