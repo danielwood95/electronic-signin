@@ -35,7 +35,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <style>
         .page-bg {
-            background: url('princeton.png') no-repeat;
+            background: url('princeton.jpg') no-repeat;
             background-size: 100% 100%;
             filter: blur(4px);
             position: fixed;
@@ -47,9 +47,9 @@
         }
         #subDiv{
             width:50%;
-            height:330px;
+            height:400px;
             margin-top:10px;
-            background-color:lightgreen;
+            background-color: ff8f00;
             border-radius:3px;
             padding:10px;
             box-sizing:border-box;
@@ -66,7 +66,7 @@
             width:50%;
             height:330px;
             margin-top:10px;
-            background-color:lightgreen;
+            background-color: ff8f00;
             border-radius:3px;
             padding:10px;
             box-sizing:border-box;
@@ -164,7 +164,7 @@
     <a class="navbar-brand" href="#"><span><img src="Princeton_shield.png" style="width: 25px; height: 30px; margin-top: -5px"> Orange Key Electronic Sign-in</span></a>
     <a href="EnterAdmin.php" style="float: right; margin-right: 10px; margin-top: 10px"><img src="gear.jpg" style="width: 30px; height: 30px;"></a>
 </nav>
-<div class="container" style="background: rgba(211, 211, 211, 0.5);">
+<div class="container" style="background: rgba(170, 170, 170, 0.5);">
     <div id="panels">
         <div style="margin-left: 10px">
             <?php
@@ -267,16 +267,16 @@
     <h1>Substitute Form</h1>
     <form id="subForm" action="substitute.php" method="get" onsubmit="return validate();">
         Original Tour Guide:<br>
-        <input type="text" value="tour guide" name="TourGuide" readonly required><br>
+        <input type="text" value="tour guide" name="TourGuide" readonly required><br><br>
         Substitute Tour Guide(Full Name):<br>
         <input type="text" placeholder="Name" name="Substitute" required>
         <br><br>
         Substitute's Phone Number:<br>
         <input type="text" placeholder="Phone Number" name="Number" required>
         <br><br>
-        <input type="submit" value="Submit" class="btn btn-primary">
+        <input type="submit" value="Submit" class="btn btn-primary" style="background-color: transparent; border-color: white;">
     </form>
-    <button type="button" class="btn btn-primary" onclick="hideSubView();">Cancel</button>
+    <button type="button" class="btn btn-primary" onclick="hideSubView();" style="background-color: transparent; border-color: white;">Cancel</button>
 </div>
 <div id="addTourDiv">
     <h1>Add Tour Guide Form</h1>
@@ -287,9 +287,9 @@
         Phone Number:<br>
         <input type="text" placeholder="Phone Number" name="Number" required>
         <br><br>
-        <input type="submit" value="Submit" class="btn btn-primary">
+        <input type="submit" value="Submit" class="btn btn-primary" style="background-color: transparent; border-color: white;">
     </form>
-    <button onclick="closeAdd();" type="button" class="btn btn-primary">Cancel</button>
+    <button onclick="closeAdd();" type="button" class="btn btn-primary" style="background-color: transparent; border-color: white;">Cancel</button>
 </div>
 <span id="here" style="color: transparent">
 <?php

@@ -159,6 +159,7 @@ if(!password_verify($_POST["PSSWD"], $pw)){
                             <option value="friday">Friday</option>
                             <option value="saturday">Saturday</option>
                             <option value="sunday">Sunday</option>
+                            <option value="none">None</option>
                         </select></td>
                     <td><select name="Window" required>
                             <option value="eleven">11:15</option>

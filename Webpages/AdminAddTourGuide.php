@@ -5,6 +5,9 @@ $tg = $_POST["Name"];
 $num = $_POST["Number"];
 $day = $_POST["Day"];
 $win = $_POST["Window"];
+if($day == "none"){
+    $win = "none";
+}
 $inDBfile = fopen("tourGuidesinDB.txt", "r+");
 $Match = false;
 while(!feof($inDBfile)){
@@ -27,19 +30,21 @@ if(!$Match) {
     if ($result->num_rows > 0) {
         // output data of each row
         while($row = $result->fetch_assoc()) {
-            $enddateFile = fopen("SemesterEnd", "r");
-            $enddate = fgets($enddateFile);
-            fclose($enddateFile);
-            $daytoReplace = $row["Day"];
-            $startdate = date('Y-m-d', (strtotime("next ".$daytoReplace)));
-            $dateArray = date_range($startdate, $enddate);
-            for($x = 0; $x < count($dateArray); $x++) {
-                $sql = "DELETE FROM SignedIn WHERE Name='".strtolower($tg)."' AND Date='".$dateArray[$x]."'";
-                if ($conn->query($sql) === TRUE) {
-                    //echo "New record created successfully".$eleveninm;
-                } else {
-                    echo "Error: " . $sql . "<br>" . $conn->error;
-                    die;
+            if($row["Day"] != "none"){
+                $enddateFile = fopen("SemesterEnd", "r");
+                $enddate = fgets($enddateFile);
+                fclose($enddateFile);
+                $daytoReplace = $row["Day"];
+                $startdate = date('Y-m-d', (strtotime("next ".$daytoReplace)));
+                $dateArray = date_range($startdate, $enddate);
+                for($x = 0; $x < count($dateArray); $x++) {
+                    $sql = "DELETE FROM SignedIn WHERE Name='".strtolower($tg)."' AND Date='".$dateArray[$x]."'";
+                    if ($conn->query($sql) === TRUE) {
+                        //echo "New record created successfully".$eleveninm;
+                    } else {
+                        echo "Error: " . $sql . "<br>" . $conn->error;
+                        die;
+                    }
                 }
             }
         }
@@ -66,19 +71,21 @@ function date_range($first, $last, $step = '+7 day', $output_format = 'Y-m-d' ) 
 
     return $dates;
 }
-$enddateFile = fopen("SemesterEnd", "r");
-$enddate = fgets($enddateFile);
-fclose($enddateFile);
-$startdate = date('Y-m-d', (strtotime("next ".$day)));
+if($day != "none"){
+    $enddateFile = fopen("SemesterEnd", "r");
+    $enddate = fgets($enddateFile);
+    fclose($enddateFile);
+    $startdate = date('Y-m-d', (strtotime("next ".$day)));
 //$startdate = date('Y-m-d', strtotime($day));
-$dateArray = date_range($startdate, $enddate);
-for($x = 0; $x < count($dateArray); $x++) {
-    $sql = "INSERT INTO SignedIn (Name, Number, Date, Window) VALUES ('".strtolower($tg)."', '".$num."', '".$dateArray[$x]."', '".$win."')";
-    if ($conn->query($sql) === TRUE) {
-        //echo "New record created successfully".$eleveninm;
-    } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
-        die;
+    $dateArray = date_range($startdate, $enddate);
+    for($x = 0; $x < count($dateArray); $x++) {
+        $sql = "INSERT INTO SignedIn (Name, Number, Date, Window) VALUES ('".strtolower($tg)."', '".$num."', '".$dateArray[$x]."', '".$win."')";
+        if ($conn->query($sql) === TRUE) {
+            //echo "New record created successfully".$eleveninm;
+        } else {
+            echo "Error: " . $sql . "<br>" . $conn->error;
+            die;
+        }
     }
 }
 ?>
