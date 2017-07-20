@@ -7,7 +7,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <style>
         .page-bg {
-            background: url('princeton.png') no-repeat;
+            background: url('princeton.jpg') no-repeat;
             background-size: 100% 100%;
             filter: blur(4px);
             position: fixed;
