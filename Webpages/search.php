@@ -18,6 +18,10 @@
             visibility:hidden;
             display:none;
         }
+        .hidden{
+            visibility:hidden;
+            display:none;
+        }
     </style>
 </head>
 <body>
@@ -31,8 +35,9 @@
 </form>
 <div id="tablediv">
     <span style="float: left; margin-left: 10px; margin-bottom:10px;"><a onclick="toAdminPage()" style="color: purple; cursor: pointer;">Back to Admin Page</a></span><br><br>
-    <form action="search.php">
-        <input type="search" value="<?php echo $_POST["Search"]?>" name="Search" required>
+    <form action="search.php" method="post">
+        <input class="hidden" type="password" value="<?php echo $_POST["PSSWD"];?>" name="PSSWD" readonly>
+        <input type="search" name="Search" required>
         <input type="submit" value="search">
     </form>
     <table>

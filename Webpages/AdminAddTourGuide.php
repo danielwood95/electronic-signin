@@ -75,8 +75,7 @@ if($day != "none"){
     $enddateFile = fopen("SemesterEnd", "r");
     $enddate = fgets($enddateFile);
     fclose($enddateFile);
-    $startdate = date('Y-m-d', (strtotime("next ".$day)));
-//$startdate = date('Y-m-d', strtotime($day));
+    $startdate = date('Y-m-d', (strtotime("next ".$day)-604800));
     $dateArray = date_range($startdate, $enddate);
     for($x = 0; $x < count($dateArray); $x++) {
         $sql = "INSERT INTO SignedIn (Name, Number, Date, Window) VALUES ('".strtolower($tg)."', '".$num."', '".$dateArray[$x]."', '".$win."')";
