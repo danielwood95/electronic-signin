@@ -33,7 +33,7 @@
         #resetpw{
             width:50%;
             height:330px;
-            margin-top:10px;
+            margin-top:100px;
             background-color:orange;
             border-radius:3px;
             padding:10px;
