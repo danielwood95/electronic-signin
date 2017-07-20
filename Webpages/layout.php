@@ -48,7 +48,7 @@
         #subDiv{
             width:50%;
             height:400px;
-            margin-top:10px;
+            margin-top:100px;
             background-color: ff8f00;
             border-radius:3px;
             padding:10px;
@@ -65,7 +65,7 @@
         #addTourDiv{
             width:50%;
             height:330px;
-            margin-top:10px;
+            margin-top:100px;
             background-color: ff8f00;
             border-radius:3px;
             padding:10px;
@@ -87,7 +87,10 @@
             color: black;
         }
         .btn-primary:disabled:hover{
-            color: white;
+            color: gray;
+        }
+        .btn-primary:disabled{
+            color: gray;
         }
         .backImg{
             width:20px;
@@ -120,8 +123,10 @@
         document.getElementById('subDiv').style.visibility = "visible"
     }
     function openAdd() {
-        document.getElementById("addTourDiv").style.display = "block";
-        document.getElementById("addTourDiv").style.visibility = "visible";
+        if(confirm("You Are Creating An Additional Tour Guide Are Your Sure You Are Not Supposed To Substitute?")){
+            document.getElementById("addTourDiv").style.display = "block";
+            document.getElementById("addTourDiv").style.visibility = "visible";
+        }
     }
     function validateAdd(){
         var signedIn = document.getElementById("here").innerHTML;
@@ -188,7 +193,7 @@
 
 </script>
 <nav class="navbar navbar-inverse">
-    <a class="navbar-brand" href="#"><span><img src="Princeton_shield.png" style="width: 25px; height: 30px; margin-top: -5px"> Orange Key Electronic Sign-in</span></a>
+    <a class="navbar-brand" href="#"><span><img src="Princeton_shield.png" style="width: 25px; height: 30px; margin-top: -5px; margin-right: 10px">Orange Key Electronic Sign-in</span></a>
     <a href="EnterAdmin.php" style="float: right; margin-right: 10px; margin-top: 10px"><img src="gear.jpg" style="width: 30px; height: 30px;"></a>
 </nav>
 <div class="container" style="background: rgba(170, 170, 170, 0.5);">
@@ -205,7 +210,7 @@
             }else if($ct == "three"){
                 $timeToDisplay = "3:30 Tour";
             }
-            echo "<h2>".date("l, F d")." ".$timeToDisplay." <button id=\"btn10\" type=\"button\" class=\"btn btn-primary\" style=\"margin-left: 10px; margin-bottom:10px; border-color: ff8f00;\" onclick=\"openAdd()\">Additional Guide +</button></h2>";
+            echo "<h2>".date("l, F d")." ".$timeToDisplay." <button id=\"btn10\" type=\"button\" class=\"btn btn-primary\" style=\"margin-left: 10px; margin-bottom:10px; border-color: ff8f00;\" onclick=\"openAdd()\"><b>Additional Guide +</b></button></h2>";
             ?>
         </div>
     <br>
@@ -284,10 +289,10 @@
     ?>
     </div>
     <div style='float: left; width: 10%; margin-top: 10px; margin-bottom: 20px'>
-        <button type="button" class="btn btn-primary" onclick="prev();" style="width: 100%; background-color: transparent; border-color: ff8f00;">Prev Tour</button>
+        <button type="button" class="btn btn-primary" onclick="prev();" style="width: 100%; background-color: transparent; border-color: ff8f00;"><b>Prev Tour</b></button>
     </div>
     <div style='float: right; width: 10%; margin-top: 10px; margin-bottom: 20px'>
-        <button type="button" class="btn btn-primary" onclick="next();" style="width: 100%; background-color: transparent; border-color: ff8f00;">Next Tour</button>
+        <button type="button" class="btn btn-primary" onclick="next();" style="width: 100%; background-color: transparent; border-color: ff8f00;"><b>Next Tour</b></button>
     </div>
 </div>
 <div id="subDiv">

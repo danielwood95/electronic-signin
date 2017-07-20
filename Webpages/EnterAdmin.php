@@ -87,7 +87,7 @@
     }
 </script>
 <nav class="navbar navbar-inverse">
-    <a class="navbar-brand" href="#"><span><img src="Princeton_shield.png" style="width: 25px; height: 30px; margin-top: -5px"> Admin Sign-in</span></a>
+    <a class="navbar-brand" href="#"><span><img src="Princeton_shield.png" style="width: 25px; height: 30px; margin-top: -5px; margin-right: 10px">Admin Sign-in</span></a>
     <a class="navbar-brand" href="layout.php" style="float: right; margin-right: 10px;">Back To Tour Guide Sign In</a>
 </nav>
 <div class="container" style="background: rgba(170, 170, 170, 0.5);">
