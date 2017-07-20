@@ -35,7 +35,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <style>
         .page-bg {
-            background: url('princeton.jpg') no-repeat;
+            background: url('nasssauhall2.jpg') no-repeat;
             background-size: 100% 100%;
             filter: blur(4px);
             position: fixed;
