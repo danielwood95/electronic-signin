@@ -7,7 +7,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <style>
         .page-bg {
-            background: url('princeton.jpg') no-repeat;
+            background: url('princeton.png') no-repeat;
             background-size: 100% 100%;
             filter: blur(4px);
             position: fixed;
@@ -88,7 +88,7 @@
 </script>
 <nav class="navbar navbar-inverse">
     <a class="navbar-brand" href="#"><span><img src="Princeton_shield.png" style="width: 25px; height: 30px; margin-top: -5px; margin-right: 10px">Admin Sign-in</span></a>
-    <a class="navbar-brand" href="layout.php" style="float: right; margin-right: 10px;">Back To Tour Guide Sign In</a>
+    <a class="navbar-brand" href="index.php" style="float: right; margin-right: 10px;">Back To Tour Guide Sign In</a>
 </nav>
 <div class="container" style="background: rgba(170, 170, 170, 0.5);">
     <h1>Please Enter The Password To Continue To Admin Site</h1>

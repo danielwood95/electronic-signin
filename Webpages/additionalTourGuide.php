@@ -7,11 +7,11 @@ $tg = $_GET["TourGuide"];
 $num = $_GET["Number"];
 $sql = "INSERT INTO SignedIn (Name, Number, Date, Window) VALUES ('".strtolower($tg)."', '".$num."', '".date("Y-m-d")."', '".$cw."')";
 if ($conn->query($sql) === TRUE) {
-    //echo "New record created successfully".$eleveninm;
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }
 fclose($timeFile);
+//check if tour guide is in People Database
 $inDBfile = fopen("tourGuidesinDB.txt", "r+");
 $Match = false;
 while(!feof($inDBfile)){
@@ -28,6 +28,7 @@ if(!$Match) {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
 }
+//cleanup and return to webpage that called this
 fclose($inDBfile);
 header('Location: ' . $_SERVER["HTTP_REFERER"] );
 exit;

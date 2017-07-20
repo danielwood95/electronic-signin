@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
 <?php
+//check password
 $pwfile = fopen("Password", "r");
 $pw = fgets($pwfile);
 fclose($pwfile);
@@ -128,6 +129,7 @@ if(!password_verify($_POST["PSSWD"], $pw)){
     }
 </script>
 <script>
+//    add dashes automatically for phone number
     $(function() {
         $("#Number").attr('maxlength', '12');
         $("#Number").on('keyup', function() {
@@ -156,12 +158,13 @@ if(!password_verify($_POST["PSSWD"], $pw)){
     function closeReset() {
         document.getElementById('resetDiv').style.display = "none";
     }
+    //submit previous tours form when hyperlink is clicked
     function toPreviousTours(){
         document.getElementById("toPrev").submit();
     }
 </script>
 <span style="float: left; margin-left: 10px; margin-bottom:10px;"><a onclick="toPreviousTours()" style="color: purple; cursor: pointer;">See Previous Tours</a></span>
-<span style="float: right; margin-right: 10px; margin-bottom:10px;"><a href="layout.php">Tour Guide Sign In</a></span>
+<span style="float: right; margin-right: 10px; margin-bottom:10px;"><a href="index.php">Tour Guide Sign In</a></span>
 <h1>Admin Page</h1>
 <div id="totals">
     <h2>Totals:</h2>
@@ -183,6 +186,7 @@ if(!password_verify($_POST["PSSWD"], $pw)){
                 <th onclick="sortTable(6)">Tour Time</th>
             </tr>
             <?php
+            //get totals from People Table
             require_once("DBConnect.php");
             $sql = "SELECT * FROM People";
             $result = $conn->query($sql);
@@ -241,6 +245,7 @@ if(!password_verify($_POST["PSSWD"], $pw)){
                             <option value="one">1:00</option>
                             <option value="three">3:30</option>
                         </select></td>
+<!--                    pass password to where form submits so it does not have to be reentered-->
                     <input name="PSSWD" value="<?php echo $_POST["PSSWD"]; ?>" style="visibility: hidden; display: none;" type="text">
                     <td><input type="submit"></td>
                 </tr>
@@ -251,6 +256,7 @@ if(!password_verify($_POST["PSSWD"], $pw)){
 <div id="resetDiv">
     <h1>New Semester</h1>
     <form action="ResetPeople.php" method="post">
+        <!--pass password to where form submits so it does not have to be reentered-->
         <input name="PSSWD" value="<?php echo $_POST["PSSWD"]; ?>" style="visibility: hidden; display: none;" type="text">
         Date the New Semester ends:<br>
         <input type="date" name="SemesterDate" required><br><br>
@@ -260,9 +266,11 @@ if(!password_verify($_POST["PSSWD"], $pw)){
 </div>
 <button style="background-color: orange; float: left; margin-left: 10px; border-radius: 5px" onclick="openReset()">New Semester</button>
 <form action="ResetAll.php" onsubmit="return deleteCheck()" method="post">
+    <!--pass password to where form submits so it does not have to be reentered-->
     <input name="PSSWD" value="<?php echo $_POST["PSSWD"]; ?>" style="visibility: hidden; display: none;" type="text">
     <input type="submit" value="Reset All" style="background-color: orangered; float: left; margin-left: 10px; border-radius: 5px">
 </form>
+<!--invisible form to submit when going to previous tours in order to pass password-->
 <form id="toPrev" action="getPreviousTours.php" method="post">
     <input type="password" value="<?php echo $_POST["PSSWD"];?>" name="PSSWD" readonly>
 </form>

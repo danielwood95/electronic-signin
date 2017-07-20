@@ -52,6 +52,6 @@ if (mysqli_query($conn, $sql)) {
 }
 mysqli_close($conn);
 if($tablesCreated == 2){
-    echo "<h1>All Tables Created Sucessfully click <a href='layout.php'>here</a> to go to sign in page</h1>";
+    echo "<h1>All Tables Created Sucessfully click <a href='index.php'>here</a> to go to sign in page</h1>";
 }
 ?>
