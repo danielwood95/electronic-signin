@@ -88,7 +88,7 @@
             }
 
         }else{
-            alert("Passwords Do Not Match")
+            alert("Passwords do not match")
             return false;
         }
     }
