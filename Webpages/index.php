@@ -134,7 +134,7 @@
         document.getElementById('subDiv').style.visibility = "visible"
     }
     function openAdd() {
-        if(confirm("You Are Creating An Additional Tour Guide Are Your Sure You Are Not Supposed To Substitute?")){
+        if(confirm("You are creating a new tour guide for this window. This means you will not be substituting for an existing tour guide. Would you like to continue?")){
             document.getElementById("addTourDiv").style.display = "block";
             document.getElementById("addTourDiv").style.visibility = "visible";
         }
@@ -143,7 +143,7 @@
         var signedIn = document.getElementById("here").innerHTML;
         var sub = document.forms["addTourDiv"]["TourGuide"].value.toLowerCase();
         if(signedIn.indexOf(("\n".concat(sub, "\n")))!=-1){
-            if(confirm("You Are Already Giving A Tour In This Time Block Are You Sure You Would Like To Give Another?")){
+            if(confirm("You are already giving a tour in this time block are you sure you would like to give another?")){
                 document.getElementById('addTourDiv').style.display = "none";
             }else{
                 return false;
@@ -159,7 +159,7 @@
         var signedIn = document.getElementById("here").innerHTML;
         var sub = document.forms["subForm"]["Substitute"].value.toLowerCase();
         if(signedIn.indexOf(("\n".concat(sub, "\n")))!=-1){
-            if(confirm("You Are Already Giving A Tour In This Time Block Are You Sure You Would Like To Give Another?")){
+            if(confirm("You are already giving a tour in this time block are you sure you would like to give another?")){
                 document.getElementById('subDiv').style.display = "none";
             }else{
                 return false;

@@ -68,10 +68,25 @@
 <body>
 <script type="text/javascript">
     function checkMatch() {
-        if(document.forms["resetForm"]["NamePW"].value == document.forms["resetForm"]["ConfirmNewPW"].value){
-            if(!confirm("Are You Sure You Want To Reset The Password?")){
+        var newpw = document.forms["resetForm"]["NewPW"].value;
+        if(newpw == document.forms["resetForm"]["ConfirmNewPW"].value){
+            if(newpw.length >= 8 && newpw.match(/[A-Z]/) && newpw.match(/\d/)){
+                if(!confirm("Are You Sure You Want To Reset The Password?")){
+                    return false;
+                }
+            }else{
+                if(newpw.length < 8){
+                    alert("New password is too short. Passwords must be at least 8 characters.");
+                }else if(!newpw.match(/[A-z]/)){
+                    alert("New password does not contain a letter. Passwords must contain at least one letter and one capital letter.");
+                }else if(!newpw.match(/[A-Z]/)){
+                    alert("New password does not contain a capital letter. Passwords must contain at least one capital letter.");
+                }else if(!newpw.match(/\d/)){
+                    alert("New password does not contain a number. Passwords must contain at least one number.");
+                }
                 return false;
             }
+
         }else{
             alert("Passwords Do Not Match")
             return false;

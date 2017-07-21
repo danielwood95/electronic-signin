@@ -69,6 +69,12 @@ if(!password_verify($_POST["PSSWD"], $pw)){
     th:hover{
         background-color: lightgray;
     }
+    .t2header{
+        cursor: auto;
+    }
+    .t2header:hover{
+        background-color: white;
+    }
 </style>
 </head>
 <body>
@@ -144,13 +150,13 @@ if(!password_verify($_POST["PSSWD"], $pw)){
         });
     });
     function deleteCheck() {
-        if(confirm("You Are Deleting All Tour Information From This Current Year Are You Sure You Would Like To Continue?")){
+        if(confirm("Deleting all tour information from this year. Would you like to continue?")){
         }else{
             return false;
         }
     }
     function openReset() {
-        if(confirm("Are You Sure You Would Like To Start A New Semester And Reset The Tour Guide Totals")){
+        if(confirm("Starting a new semester and resetting tour guide totals. Would you like to continue?")){
             document.getElementById("resetDiv").style.display = "block";
             document.getElementById("resetDiv").style.visibility = "visible";
         }
@@ -220,11 +226,11 @@ if(!password_verify($_POST["PSSWD"], $pw)){
     <h2>Add Tour</h2>
         <table id="addTourGuideTable">
             <tr>
-                <th>Tour Guide's Name</th>
-                <th>Tour Guide's Number</th>
-                <th>Day to give tour</th>
-                <th>Tour Time</th>
-                <th>Enter</th>
+                <th class="t2header">Tour Guide's Name</th>
+                <th class="t2header">Mobile Number</th>
+                <th class="t2header">Day To Give Tour</th>
+                <th class="t2header">Tour Time</th>
+                <th class="t2header">Enter</th>
             </tr>
             <form id="add" action="AdminAddTourGuide.php" method="post">
                 <tr>
