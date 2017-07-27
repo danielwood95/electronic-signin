@@ -5,25 +5,42 @@
     $dateFile = fopen("CurrentDate", "r");
     $CD = fgets($dateFile);
     fclose($dateFile);
+    function date_range($first, $last, $step = '+1 day', $output_format = 'Y-m-d' ) {
+
+        $dates = array();
+        $current = strtotime($first);
+        $last = strtotime($last);
+
+        while( $current <= $last ) {
+
+            $dates[] = date($output_format, $current);
+            $current = strtotime($step, $current);
+        }
+
+        return $dates;
+    }
     if($CD != date("Y-m-d")){
-        $sql = "SELECT Name From SignedIn WHERE Date='".$CD."' AND Here='false'";
-        $result = $conn->query($sql);
-        if ($result->num_rows > 0) {
-            // output data of each row
-            while($row = $result->fetch_assoc()) {
-                $sql2 = "UPDATE People SET Absences=Absences+1 WHERE Name='".strtolower($row["Name"])."'";
-                if ($conn->query($sql2) === TRUE) {
-                    $dateFileWrite = fopen("CurrentDate", "w");
-                    fwrite($dateFileWrite, date("Y-m-d"));
-                    fclose($dateFileWrite);
-                } else {
-                    echo "Error: " . $sql . "<br>" . $conn->error;
+        $dateArray = date_range($CD, date("Y-m-d"));
+        for($x = 0; $x < count($dateArray); $x++) {
+            $sql = "SELECT Name From SignedIn WHERE Date='".$dateArray[$x]."' AND Here='false'";
+            $result = $conn->query($sql);
+            if ($result->num_rows > 0) {
+                // output data of each row
+                while($row = $result->fetch_assoc()) {
+                    $sql2 = "UPDATE People SET Absences=Absences+1 WHERE Name='".strtolower($row["Name"])."'";
+                    if ($conn->query($sql2) === TRUE) {
+                        $dateFileWrite = fopen("CurrentDate", "w");
+                        fwrite($dateFileWrite, date("Y-m-d"));
+                        fclose($dateFileWrite);
+                    } else {
+                        echo "Error: " . $sql . "<br>" . $conn->error;
+                    }
                 }
+            }else{
+                $dateFileWrite = fopen("CurrentDate", "w");
+                fwrite($dateFileWrite, date("Y-m-d"));
+                fclose($dateFileWrite);
             }
-        }else{
-            $dateFileWrite = fopen("CurrentDate", "w");
-            fwrite($dateFileWrite, date("Y-m-d"));
-            fclose($dateFileWrite);
         }
     }
     ?>
