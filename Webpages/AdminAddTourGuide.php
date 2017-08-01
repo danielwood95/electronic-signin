@@ -1,7 +1,7 @@
 <?php
 require_once("DBConnect.php");
 date_default_timezone_set("America/New_York");
-$tg = $_POST["Name"];
+$tg = trim($_POST["Name"], " ");
 $num = $_POST["Number"];
 $day = $_POST["Day"];
 $win = $_POST["Window"];
@@ -11,7 +11,7 @@ if($day == "none"){
 $inDBfile = fopen("tourGuidesinDB.txt", "r+");
 $Match = false;
 while(!feof($inDBfile)){
-    if(strtolower(fgets($inDBfile)) == (strtolower($_POST['Name'])."\n")){
+    if(strtolower(fgets($inDBfile)) == (strtolower($tg)."\n")){
         $Match = true;
     }
 }
@@ -78,7 +78,7 @@ if($day != "none"){
     $startdate = date('Y-m-d', (strtotime("next ".$day)));
     $dateArray = date_range($startdate, $enddate);
     for($x = 0; $x < count($dateArray); $x++) {
-        $sql = "INSERT INTO SignedIn (Name, Number, Date, Window) VALUES ('".strtolower($tg)."', '".$num."', '".$dateArray[$x]."', '".$win."')";
+        $sql = "INSERT INTO SignedIn (Name, Display, Number, Date, Window) VALUES ('".strtolower($tg)."', '".$tg."', '".$num."', '".$dateArray[$x]."', '".$win."')";
         if ($conn->query($sql) === TRUE) {
             //echo "New record created successfully".$eleveninm;
         } else {

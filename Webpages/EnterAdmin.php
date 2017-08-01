@@ -48,7 +48,7 @@
             border: solid lightgray;
         }
         input{
-            height: 60px;
+            height: 30px;
         }
         .reset{
             height: 20px;
@@ -109,7 +109,7 @@
     <h1>Please Enter The Password To Continue To Admin Site</h1>
     <br>
     <form action="admin.php" method="post">
-        <input type="password" name="PSSWD" placeholder="password" style="width:50%; font-size: larger" required>
+        <input type="password" name="PSSWD" placeholder=" password" style="width:50%; font-size: larger" required>
         <input type="submit" value="Enter" class="btn-primary" style="width: 10%;">
     </form>
     <button onclick="openReset()" class="btn-primary">Reset Password</button>

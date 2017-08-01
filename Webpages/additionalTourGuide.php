@@ -3,9 +3,9 @@ require_once("DBConnect.php");
 date_default_timezone_set("America/New_York");
 $timeFile = fopen("currentTourWindow", "r");
 $cw = fgets($timeFile);
-$tg = $_GET["TourGuide"];
+$tg = trim($_GET["TourGuide"], " ");
 $num = $_GET["Number"];
-$sql = "INSERT INTO SignedIn (Name, Number, Date, Window) VALUES ('".strtolower($tg)."', '".$num."', '".date("Y-m-d")."', '".$cw."')";
+$sql = "INSERT INTO SignedIn (Name, Display, Number, Date, Window) VALUES ('".strtolower($tg)."', '".$tg."', '".$num."', '".date("Y-m-d")."', '".$cw."')";
 if ($conn->query($sql) === TRUE) {
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;

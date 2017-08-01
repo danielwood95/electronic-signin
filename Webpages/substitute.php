@@ -5,9 +5,9 @@ $timeFile = fopen("currentTourWindow", "r");
 $cw = fgets($timeFile);
 fclose($timeFile);
 $tg = $_GET["TourGuide"];
-$sub = $_GET["Substitute"];
+$sub = trim($_GET["Substitute"], " ");
 $num = $_GET["Number"];
-$sql = "UPDATE SignedIn SET Name='".strtolower($sub)."', Number='".$num."' WHERE Name='".strtolower($tg)."'AND Date='".date("Y-m-d")."' AND Window='".$cw."' AND Here='false'";
+$sql = "UPDATE SignedIn SET Name='".strtolower($sub)."', Display='".$sub."', Number='".$num."' WHERE Name='".strtolower($tg)."'AND Date='".date("Y-m-d")."' AND Window='".$cw."' AND Here='false'";
 if ($conn->query($sql) === TRUE) {
     //echo "New record created successfully".$eleveninm;
 } else {

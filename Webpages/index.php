@@ -77,7 +77,7 @@
             width:50%;
             height:400px;
             margin-top:100px;
-            background-color: ff8f00;
+            background-color: rgba(255,255,255,0.8);
             border-radius:3px;
             padding:10px;
             box-sizing:border-box;
@@ -88,13 +88,13 @@
             left: 25%;
             right: 25%;
             text-align: center;
-            border: solid lightgray;
+            /*border: solid lightgray;*/
         }
         #addTourDiv{
             width:50%;
             height:330px;
             margin-top:100px;
-            background-color: ff8f00;
+            background-color: rgba(170, 170, 170, 0.5);
             border-radius:3px;
             padding:10px;
             box-sizing:border-box;
@@ -105,7 +105,7 @@
             left: 25%;
             right: 25%;
             text-align: center;
-            border: solid lightgray;
+            /*border: solid lightgray;*/
         }
         #btn10{
             float: right;
@@ -148,12 +148,14 @@
     function substitute(toReplace) {
         document.forms["subForm"]["TourGuide"].value = toReplace;
         document.getElementById('subDiv').style.display = "block";
-        document.getElementById('subDiv').style.visibility = "visible"
+        document.getElementById('subDiv').style.visibility = "visible";
+        document.getElementById('panels').style.filter = "blur(4px)";
     }
     function openAdd() {
         if(confirm("You are creating a new tour guide for this window. This means you will not be substituting for an existing tour guide. Would you like to continue?")){
             document.getElementById("addTourDiv").style.display = "block";
             document.getElementById("addTourDiv").style.visibility = "visible";
+            document.getElementById('panels').style.filter = "blur(4px)";
         }
     }
     function validateAdd(){
@@ -162,15 +164,18 @@
         if(signedIn.indexOf(("\n".concat(sub, "\n")))!=-1){
             if(confirm("You are already giving a tour in this time block are you sure you would like to give another?")){
                 document.getElementById('addTourDiv').style.display = "none";
+                document.getElementById('panels').style.filter = "none";
             }else{
                 return false;
             }
         }else{
             document.getElementById('addTourDiv').style.display = "none";
+            document.getElementById('panels').style.filter = "none";
         }
     }
     function closeAdd() {
         document.getElementById('addTourDiv').style.display = "none";
+        document.getElementById('panels').style.filter = "none";
     }
     function validate(){
         var signedIn = document.getElementById("here").innerHTML;
@@ -187,6 +192,7 @@
     }
     function hideSubView(){
         document.getElementById('subDiv').style.display = "none";
+        document.getElementById('panels').style.filter = "none";
     }
     function undo(nom, did){
         window.location.href = 'undo.php?TourGuide=' + nom+"&Did="+did;
@@ -256,7 +262,7 @@
             if($row["Here"] == 'false'){
                 echo "<div id=\"pnl1\" class='panel panel-default' style='height: 60px'>
             <div style='float: left; width: 55%; margin-top: 10px'>
-                <h4 style='margin-left: 20px'>".$row["Name"]."  ".$row["Number"]."</h4>
+                <h4 style='margin-left: 20px'>".$row["Display"]."&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp".$row["Number"]."</h4>
             </div>
             <div style='float: left; width: 15%; margin-top: 10px;'>
                 <button id=\"btn1\" type=\"button\" class=\"btn btn-primary\" onclick=\"signIn('".$row["Name"]."');\" style='background-color: ff8f00;'>Sign in</button>
@@ -267,18 +273,18 @@
             </div>
 
             <div style='float: left; width: 15%; margin-top: 10px;'>
-                <button id=\"btn3\" type=\"button\" style='background-color: ff8f00;' class=\"btn btn-primary\" onclick=\"substitute('".$row["Name"]."');\">Substitute</button>
+                <button id=\"btn3\" type=\"button\" style='background-color: ff8f00;' class=\"btn btn-primary\" onclick=\"substitute('".$row["Display"]."');\">Substitute</button>
             </div>
         </div>";
             }else{
                 if($row["Tour"] == 'false'){
                     echo "<div id=\"pnl1\" class='panel panel-default' style='height: 60px; background: palegreen;'>
             <div style='float: left; width: 55%; margin-top: 10px'>
-                 <h4 style='margin-left: 20px'><button class='backImg' onclick='undo(\"".$row["Name"]."\", \"Here\")'><img class='backImg' src='backarrow.png'></button>".$row["Name"]."  ".$row["Number"]."</h4>
+                 <h4 style='margin-left: 20px'><button class='backImg' onclick='undo(\"".$row["Name"]."\", \"Here\")'><img class='backImg' src='backarrow.png'></button>".$row["Display"]."&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp".$row["Number"]."</h4>
             </div>
 
             <div style='float: left; width: 15%; margin-top: 10px;'>
-                <button id=\"btn1\" type=\"button\" class=\"btn btn-primary\" style='background-color: ff8f00;' disabled='true'>Signed in</button>
+                <button id=\"btn1\" type=\"button\" class=\"btn btn-primary\" style='background-color: transparent; color: ff8f00; border-color: gray;' disabled='true'>Signed in</button>
             </div>
 
             <div style='float:left; width:15%; margin-top: 10px;'>
@@ -292,11 +298,11 @@
                 }else{
                     echo "<div id=\"pnl1\" class='panel panel-default' style='height: 60px; background: palegreen;'>
             <div style='float: left; width: 55%; margin-top: 10px'>
-                 <h4 style='margin-left: 20px'><button class='backImg' onclick='undo(\"".$row["Name"]."\", \"Tour\")'><img class='backImg' src='backarrow.png'></button>".$row["Name"]."  ".$row["Number"]."</h4>
+                 <h4 style='margin-left: 20px'><button class='backImg' onclick='undo(\"".$row["Name"]."\", \"Tour\")'><img class='backImg' src='backarrow.png'></button>".$row["Display"]."&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp".$row["Number"]."</h4>
             </div>
 
             <div style='float: left; width: 15%; margin-top: 10px;'>
-                <button id=\"btn1\" type=\"button\" class=\"btn btn-primary\" disabled='true' style='background-color: ff8f00;'>Signed in</button>
+                <button id=\"btn1\" type=\"button\" class=\"btn btn-primary\" disabled='true' style='background-color: transparent; color: ff8f00; border-color: gray;'>Signed in</button>
             </div>
 
             <div style='float:left; width:15%; margin-top: 10px;'>
@@ -315,12 +321,12 @@
     fclose($timeFile);
 
     ?>
-    </div>
-    <div style='float: left; width: 10%; margin-top: 10px; margin-bottom: 20px'>
-        <button type="button" class="btn btn-primary" onclick="prev();" style="width: 100%; background-color: transparent; border-color: ff8f00;"><b>Prev Tour</b></button>
-    </div>
-    <div style='float: right; width: 10%; margin-top: 10px; margin-bottom: 20px'>
-        <button type="button" class="btn btn-primary" onclick="next();" style="width: 100%; background-color: transparent; border-color: ff8f00;"><b>Next Tour</b></button>
+        <div style='float: left; width: 10%; margin-top: 10px; margin-bottom: 20px'>
+            <button type="button" class="btn btn-primary" onclick="prev();" style="width: 100%; background-color: transparent; border-color: ff8f00;"><b>Prev Tour</b></button>
+        </div>
+        <div style='float: right; width: 10%; margin-top: 10px; margin-bottom: 20px'>
+            <button type="button" class="btn btn-primary" onclick="next();" style="width: 100%; background-color: transparent; border-color: ff8f00;"><b>Next Tour</b></button>
+        </div>
     </div>
 </div>
 <div id="subDiv">
@@ -334,9 +340,9 @@
         Substitute's Phone Number:<br>
         <input id="Number" type="text" placeholder="Phone Number" name="Number" required>
         <br><br>
-        <input type="submit" value="Submit" class="btn btn-primary" style="background-color: transparent; border-color: white;">
+        <input type="submit" value="Submit" class="btn btn-primary" style="background-color: ff8f00; border-color: gray;">
     </form>
-    <button type="button" class="btn btn-primary" onclick="hideSubView();" style="background-color: transparent; border-color: white;">Cancel</button>
+    <button type="button" class="btn btn-primary" onclick="hideSubView();" style="background-color: ff8f00; border-color: gray;">Cancel</button>
 </div>
 <div id="addTourDiv">
     <h1>Add Tour Guide Form</h1>
@@ -347,9 +353,9 @@
         Phone Number:<br>
         <input id="NumberAdd" type="text" placeholder="Phone Number" name="Number" required>
         <br><br>
-        <input type="submit" value="Submit" class="btn btn-primary" style="background-color: transparent; border-color: white;">
+        <input type="submit" value="Submit" class="btn btn-primary" style="background-color: transparent; border-color: ff8f00;">
     </form>
-    <button onclick="closeAdd();" type="button" class="btn btn-primary" style="background-color: transparent; border-color: white;">Cancel</button>
+    <button onclick="closeAdd();" type="button" class="btn btn-primary" style="background-color: transparent; border-color: ff8f00;">Cancel</button>
 </div>
 <span id="here" style="color: transparent">
 <?php

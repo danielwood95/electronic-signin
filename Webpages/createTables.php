@@ -39,6 +39,7 @@ if (mysqli_query($conn, $sql)) {
 }
 $sql = "CREATE TABLE SignedIn (
 Name VARCHAR(255) NOT NULL, 
+Display VARCHAR(255),
 Number VARCHAR(255), 
 Date VARCHAR(255) NOT NULL,
 Window enum('eleven', 'one', 'three'),
