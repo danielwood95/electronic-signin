@@ -94,7 +94,7 @@
             width:50%;
             height:330px;
             margin-top:100px;
-            background-color: rgba(170, 170, 170, 0.5);
+            background-color: rgba(255,255,255,0.8);
             border-radius:3px;
             padding:10px;
             box-sizing:border-box;
@@ -353,9 +353,9 @@
         Phone Number:<br>
         <input id="NumberAdd" type="text" placeholder="Phone Number" name="Number" required>
         <br><br>
-        <input type="submit" value="Submit" class="btn btn-primary" style="background-color: transparent; border-color: ff8f00;">
+        <input type="submit" value="Submit" class="btn btn-primary" style="background-color: ff8f00; border-color: gray;">
     </form>
-    <button onclick="closeAdd();" type="button" class="btn btn-primary" style="background-color: transparent; border-color: ff8f00;">Cancel</button>
+    <button onclick="closeAdd();" type="button" class="btn btn-primary" style="background-color: ff8f00; border-color: gray;">Cancel</button>
 </div>
 <span id="here" style="color: transparent">
 <?php

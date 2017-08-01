@@ -34,7 +34,7 @@
             width:50%;
             height:330px;
             margin-top:100px;
-            background-color:orange;
+            background-color:rgba(255,255,255,0.8);
             border-radius:3px;
             padding:10px;
             box-sizing:border-box;
@@ -45,7 +45,7 @@
             left: 25%;
             right: 25%;
             text-align: center;
-            border: solid lightgray;
+            /*border: solid lightgray;*/
         }
         input{
             height: 30px;
@@ -55,13 +55,13 @@
         }
         .resetButton{
             height: 30px;
-            background-color: transparent;
-            border-color: white;
+            background-color: ff8f00;
+            border-color: gray;
             border-radius: 5px;
-            color: black;
+            color: white;
         }
         .resetButton:hover{
-            color: white;
+            color: black;
         }
     </style>
 </head>
@@ -95,17 +95,19 @@
     function openReset() {
         document.getElementById("resetpw").style.display = "block";
         document.getElementById("resetpw").style.visibility = "visible";
+        document.getElementById('containerDiv').style.filter = "blur(4px)";
     }
     function closeReset() {
         document.getElementById('resetpw').style.display = "none";
         document.getElementById("resetpw").style.visibility = "hidden";
+        document.getElementById('containerDiv').style.filter = "none";
     }
 </script>
 <nav class="navbar navbar-inverse">
     <a class="navbar-brand" href="#"><span><img src="Princeton_shield.png" style="width: 25px; height: 30px; margin-top: -5px; margin-right: 10px">Admin Sign-in</span></a>
     <a class="navbar-brand" href="index.php" style="float: right; margin-right: 10px;">Back To Tour Guide Sign In</a>
 </nav>
-<div class="container" style="background: rgba(170, 170, 170, 0.5);">
+<div class="container" id="containerDiv" style="background: rgba(170, 170, 170, 0.5);">
     <h1>Please Enter The Password To Continue To Admin Site</h1>
     <br>
     <form action="admin.php" method="post">
