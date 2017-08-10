@@ -80,8 +80,8 @@
                 }else if($row["Window"] == 'three'){
                     $time = "3:30";
                 }
-                if(time()-strtotime($dateArray[$x]) < 0){
-                    echo "<tr stlye='background-color: green;'>
+                if(time()-strtotime($row["Date"]) < 0){
+                    echo "<tr stlye='background-color: white';>
                 <td>".$row["Name"]."</td>
                 <td>".$row["Number"]."</td>
                 <td>".$row["Date"]."</td>
@@ -90,11 +90,11 @@
                 <td>".$gt."</td>
             </tr>";
                 }else{
-                    echo "<tr>
+                    echo "<tr style='background-color: lightgray;'>
                 <td>".$row["Name"]."</td>
                 <td>".$row["Number"]."</td>
                 <td>".$row["Date"]."</td>
-                <td>11:15</td>
+                <td>".$time."</td>
                 <td>".$sn."</td>
                 <td>".$gt."</td>
             </tr>";

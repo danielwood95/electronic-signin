@@ -1,22 +1,24 @@
 <?php
     require_once("DBConnect.php");
-    $inDBfile = fopen("tourGuidesinDB.txt", "r+");
     $Match = false;
-    while(!feof($inDBfile)){
-        if(strtolower(fgets($inDBfile)) == (strtolower($_GET['Name'])."\n")){
-            $Match = true;
+    $sql = "SELECT Name FROM People";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+    // output data of each row
+        while ($row = $result->fetch_assoc()) {
+            if(strtolower($row["Name"]) == (strtolower($_GET['Name']))){
+                $Match = true;
+            }
         }
     }
     if(!$Match) {
         $sql = "INSERT INTO People (Name)
     VALUES ('" . strtolower($_GET['Name']) . "')";
         if ($conn->query($sql) === TRUE) {
-            fwrite($inDBfile, strtolower($_GET['Name'])."\n");
         } else {
             echo "Error: " . $sql . "<br>" . $conn->error;
         }
     }
-    fclose($inDBfile);
     $SONEFile = fopen("SessionOne", "r");
     $STWOFile = fopen("SessionTwo", "r");
     $STHREEFile = fopen("SessionThree", "r");

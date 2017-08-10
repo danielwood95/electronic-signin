@@ -7,8 +7,6 @@ if(!password_verify($_POST["PSSWD"], $pw)){
     die;
 }
 require_once("DBConnect.php");
-$reset = fopen("tourGuidesinDB.txt", "w");
-fclose($reset);
 $deletes = 0;
 $sql = "DELETE FROM People";
 if ($conn->query($sql) === TRUE) {

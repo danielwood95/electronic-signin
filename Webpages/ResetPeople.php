@@ -23,8 +23,6 @@ if ($result->num_rows > 0) {
     }
 }
 fclose($totals);
-$reset = fopen("tourGuidesinDB.txt", "w");
-fclose($reset);
 $sql2 = "DELETE FROM People";
 if ($conn->query($sql2) === TRUE) {
     echo "Semester Started Successfully <br><a onclick='goBack()' style='color: purple; cursor: pointer;'>Click Here To Return To Admin Page</a> ";

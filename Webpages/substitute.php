@@ -13,23 +13,25 @@ if ($conn->query($sql) === TRUE) {
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }
-$inDBfile = fopen("tourGuidesinDB.txt", "r+");
 $Match = false;
-while(!feof($inDBfile)){
-    if(strtolower(fgets($inDBfile)) == (strtolower($sub)."\n")){
-        $Match = true;
+$sql = "SELECT Name FROM People";
+$result = $conn->query($sql);
+if ($result->num_rows > 0) {
+// output data of each row
+    while ($row = $result->fetch_assoc()) {
+        if(strtolower($row["Name"]) == (strtolower($sub))){
+            $Match = true;
+        }
     }
 }
 if(!$Match) {
     $sql = "INSERT INTO People (Name, Number)
     VALUES ('" . strtolower($sub) . "', '".$num."')";
     if ($conn->query($sql) === TRUE) {
-        fwrite($inDBfile, strtolower($sub)."\n");
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
 }
-fclose($inDBfile);
 header('Location: ' . $_SERVER["HTTP_REFERER"] );
 exit;
 ?>

@@ -8,18 +8,21 @@ $win = $_POST["Window"];
 if($day == "none"){
     $win = "none";
 }
-$inDBfile = fopen("tourGuidesinDB.txt", "r+");
 $Match = false;
-while(!feof($inDBfile)){
-    if(strtolower(fgets($inDBfile)) == (strtolower($tg)."\n")){
-        $Match = true;
+$sql = "SELECT Name FROM People";
+$result = $conn->query($sql);
+if ($result->num_rows > 0) {
+// output data of each row
+    while ($row = $result->fetch_assoc()) {
+        if(strtolower($row["Name"]) == (strtolower($tg))){
+            $Match = true;
+        }
     }
 }
 if(!$Match) {
     $sql = "INSERT INTO People (Name, Day, Window, Number)
     VALUES ('" . strtolower($tg) . "', '".$day."', '".$win."', '".$num."')";
     if ($conn->query($sql) === TRUE) {
-        fwrite($inDBfile, strtolower($tg)."\n");
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
         die;
@@ -51,7 +54,6 @@ if(!$Match) {
     }
     $sql = "UPDATE People SET Window='".$win."', Day='".$day."', Number='".$num."' WHERE Name='".strtolower($tg)."'";
     if ($conn->query($sql) === TRUE) {
-        fwrite($inDBfile, strtolower($tg)."\n");
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
         die;

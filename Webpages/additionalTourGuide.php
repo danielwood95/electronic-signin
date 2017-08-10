@@ -12,24 +12,26 @@ if ($conn->query($sql) === TRUE) {
 }
 fclose($timeFile);
 //check if tour guide is in People Database
-$inDBfile = fopen("tourGuidesinDB.txt", "r+");
 $Match = false;
-while(!feof($inDBfile)){
-    if(strtolower(fgets($inDBfile)) == (strtolower($tg)."\n")){
-        $Match = true;
+$sql = "SELECT Name FROM People";
+$result = $conn->query($sql);
+if ($result->num_rows > 0) {
+// output data of each row
+    while ($row = $result->fetch_assoc()) {
+        if(strtolower($row["Name"]) == (strtolower($tg))){
+            $Match = true;
+        }
     }
 }
 if(!$Match) {
     $sql = "INSERT INTO People (Name, Number)
     VALUES ('" . strtolower($tg) . "', '".$num."')";
     if ($conn->query($sql) === TRUE) {
-        fwrite($inDBfile, strtolower($tg)."\n");
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
 }
 //cleanup and return to webpage that called this
-fclose($inDBfile);
 header('Location: ' . $_SERVER["HTTP_REFERER"] );
 exit;
 ?>

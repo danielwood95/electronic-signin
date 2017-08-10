@@ -150,7 +150,7 @@ if(!password_verify($_POST["PSSWD"], $pw)){
         });
     });
     function deleteCheck() {
-        if(confirm("Deleting all tour information from this year. Would you like to continue?")){
+        if(confirm("Deleting all tour information. Would you like to continue?")){
         }else{
             return false;
         }
@@ -169,6 +169,15 @@ if(!password_verify($_POST["PSSWD"], $pw)){
         document.getElementById("toPrev").submit();
     }
 </script>
+<?php
+$SemesterEndFile = fopen("EDD", "r");
+$SemesterEnd = fgets($SemesterEndFile);
+fclose($SemesterEndFile);
+if(time() > strtotime($SemesterEnd)){
+    echo"<script> alert('The current semester has ended to set a new semester click the new semester button');
+</script>";
+}
+?>
 <span style="float: left; margin-left: 10px; margin-bottom:10px;"><a onclick="toPreviousTours()" style="color: purple; cursor: pointer;">See Previous Tours</a></span>
 <span style="float: right; margin-right: 10px; margin-bottom:10px;"><a href="index.php">Tour Guide Sign In</a></span>
 <h1>Admin Page</h1>
