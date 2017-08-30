@@ -1,8 +1,8 @@
 <?php
 require_once("DBConnect.php");
 date_default_timezone_set("America/New_York");
-$tg = trim($_POST["Name"], " ");
-$num = $_POST["Number"];
+$tg = str_replace("'"," ",trim($_POST["Name"], " "));
+$num = str_replace("'"," ",$_POST["Number"]);
 $day = $_POST["Day"];
 $win = $_POST["Window"];
 if($day == "none"){
