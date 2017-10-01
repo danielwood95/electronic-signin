@@ -170,7 +170,7 @@ if(!password_verify($_POST["PSSWD"], $pw)){
     }
 </script>
 <?php
-$SemesterEndFile = fopen("EDD", "r");
+$SemesterEndFile = fopen("SemesterEnd", "r");
 $SemesterEnd = fgets($SemesterEndFile);
 fclose($SemesterEndFile);
 if(time() > strtotime($SemesterEnd)){
